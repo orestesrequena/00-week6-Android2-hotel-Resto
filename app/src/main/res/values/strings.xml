@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Guide</string>
     <string name="main_title"><![CDATA[Hôte & Restaurant]]></string>
+    <string name="button_accueil1"><b>hotel resto</b> \nRetrouvez les meilleurs hôtels et restaurants</string>
+    <string name="button_restaurant">RESERVER \nUN RESTAURANT</string>
+    <string name="button_hotel">RESERVER \nUN HOTEL</string>
+
 </resources>

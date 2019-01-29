@@ -13,20 +13,23 @@
             android:layout_height="wrap_content"
             android:src="@drawable/accueil1"/>
         <Button
+            style="@style/ColorBotonHome1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
            android:background="@drawable/accueil2"
-            android:text="hotel resto Retrouvez les meilleurs hôtels et restaurants"
+            android:text= "@string/button_accueil1"
             />
     </LinearLayout>
     <Button
+        style="@style/ColorBotonHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/accueil3"
-        android:text="RESERVER UN RESTAURANT"/>
+        android:text="@string/button_restaurant"/>
     <Button
+        style="@style/ColorBotonHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/accueil4"
-        android:text="RESERVER UN HOTEL" />
+        android:text="@string/button_hotel" />
 </LinearLayout>
