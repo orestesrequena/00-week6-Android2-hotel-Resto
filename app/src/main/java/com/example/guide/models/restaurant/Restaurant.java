@@ -1,6 +1,8 @@
 package com.example.guide.models.restaurant;
 
-public class Restaurant {
+import java.io.Serializable;
+
+public class Restaurant implements Serializable {
     public String name;
     public String category;
     public String email;

@@ -1,6 +1,7 @@
 package com.example.guide.ui.listing;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.guide.R;
 import com.example.guide.models.restaurant.Restaurant;
+
 
 import java.util.List;
 
@@ -28,9 +30,12 @@ public class RestaurantAdapter extends ArrayAdapter <Restaurant>{
         TextView textViewTitle = convertView.findViewById(R.id.textViewTitle);
         TextView textViewCategory = convertView.findViewById(R.id.textViewCategory);
         Restaurant item = getItem(position);
+
         textViewTitle.setText(item.name);
         textViewCategory.setText(item.category.toLowerCase());
 
         return convertView;
     }
+
+
 }
