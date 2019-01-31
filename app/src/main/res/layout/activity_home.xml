@@ -21,12 +21,14 @@
             />
     </LinearLayout>
     <Button
+        android:onClick="showRestaurant"
         style="@style/ColorBotonHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/accueil3"
         android:text="@string/button_restaurant"/>
     <Button
+        android:onClick="showHotel"
         style="@style/ColorBotonHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

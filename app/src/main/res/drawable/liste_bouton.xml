@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--etat cliqué-->
+    <item android:drawable="@drawable/liste_bouton_on" android:state_pressed="true"/>
+    <!--etat par défaut-->
+    <item android:drawable="@drawable/liste_bouton_off" />
+</selector>
