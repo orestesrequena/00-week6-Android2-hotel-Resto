@@ -60,9 +60,9 @@ public class ListingActivity extends AppCompatActivity {
 
                 //creation d'arrayList et après on ajouter des restaurants dans la liste, après il faut ajouter cette liste dans la listViewData pour l'aficher
                 restaurantList = new ArrayList<>();
-                restaurantList.add(new Restaurant("Restaurant pepe", "good food", "pepe@gmail.com", "0603030303", "www.pepe.com", "https://u.tfstatic.com/restaurant_photos/848/37848/169/612/le-resto-vue-de-la-salle-19a9c.jpg"));
-                restaurantList.add(new Restaurant("Restaurant popo", "oriental food", "popo@gmail.com", "0603030303", "www.pompom.com", "https://u.tfstatic.com/restaurant_photos/313/9313/169/612/cote-resto-notre-salle-cosy-bcf26.jpg"));
-                restaurantList.add(new Restaurant("Restaurant Jean Pierre", "good food", "jeanpierre@gmail.com", "0603030303", "www.jeanpierre.com", "https://www.ahstatic.com/photos/6155_rsr001_00_p_1024x768.jpg"));
+                restaurantList.add(new Restaurant("Restaurant pepe", "good food", "pepe@gmail.com", "0603030303", "www.lynda.com", "https://u.tfstatic.com/restaurant_photos/848/37848/169/612/le-resto-vue-de-la-salle-19a9c.jpg"));
+                restaurantList.add(new Restaurant("Restaurant popo", "oriental food", "popo@gmail.com", "0603030303", "www.google.com", "https://u.tfstatic.com/restaurant_photos/313/9313/169/612/cote-resto-notre-salle-cosy-bcf26.jpg"));
+                restaurantList.add(new Restaurant("Restaurant Jean Pierre", "good food", "jeanpierre@gmail.com", "0603030303", "www.lechti.com/lille-a-table_88/", "https://www.ahstatic.com/photos/6155_rsr001_00_p_1024x768.jpg"));
 
                 //llamamos al adapter y le anyadimos el contexto, el layout y los datos , este caso el restuarantList
                 listViewData.setAdapter(new RestaurantAdapter(ListingActivity.this, R.layout.item_restaurant, restaurantList));
