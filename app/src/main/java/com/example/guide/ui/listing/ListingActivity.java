@@ -97,13 +97,14 @@ public class ListingActivity extends AppCompatActivity {
                                 public void onResponse(String response) {
                                     //on recupere  l'object hotel de l'appel
                                     final Hotels hotels = new Gson().fromJson(response, Hotels.class);
-                                    hotelsList = new ArrayList<>();
+                                    final List<Records> records = hotels.records;
+                                    //hotelsList = new ArrayList<>();
                                     //on ajoute les valeurs de l'objet hotel à la liste
-                                    for (int i = 0; i < hotels.records.size(); i++) {
+                                    /*for (int i = 0; i < hotels.records.size(); i++) {
                                         hotelsList.add(hotels.records.get(i));
-                                    }
+                                    }*/
                                     // on passe à l'adaptateur records/hotel le context listingActivity, le layout et l'array avec les hotels
-                                    listViewData.setAdapter(new RecordsAdapter(ListingActivity.this, R.layout.item_restaurant, hotelsList));
+                                    listViewData.setAdapter(new RecordsAdapter(ListingActivity.this, R.layout.item_restaurant, records));
 
                                     //creamos el listener para que recoja la posicion del hotel y podemos pasar un extra con el objeto
                                     listViewData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -111,16 +112,13 @@ public class ListingActivity extends AppCompatActivity {
                                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                             Intent intent = new Intent(ListingActivity.this, HotelFicheActivity.class);
                                             //cogemos la position en el array
-                                            Records item = hotelsList.get(position);
-
+                                            Records item = records.get(position);
                                             //lopasamos  en el intent
                                             intent.putExtra("hotelRecord",  item);
                                             //activamos el intent para que se pase a la actividad RestaurantFicheActivity
                                             startActivity(intent);
                                         }
                                     });
-
-
                                 }
                             }, new Response.ErrorListener() {
                         @Override

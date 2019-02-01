@@ -4,11 +4,15 @@ package com.example.guide.ui.map;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.guide.R;
-import com.example.guide.models.hotel.Records;
+import com.mapbox.android.telemetry.MapboxTelemetry;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
@@ -18,22 +22,53 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.mapboxsdk.maps.SupportMapFragment;
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 
 
-public class MapboxActivity extends AppCompatActivity {
+public class MapboxFragment extends Fragment {
+    private static final String PARAM_LATITUDE = "lat";
+    private static final String PARAM_LONGITUDE = "lon";
     private MapView mapView;
     private  MapboxMap mapboxMap;
     double longitude , latitude;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Mapbox.getInstance(this, "pk.eyJ1Ijoib2RvciIsImEiOiJjam82eGtoOHQwbnMxM3FwcWxmM2ZtaW4zIn0.WVlYHUYvukEai_eSlvk38A");
-        setContentView(R.layout.activity_mapbox);
-        mapView = findViewById(R.id.mapView);
+        Mapbox.getInstance(getContext(), "pk.eyJ1Ijoib2RvciIsImEiOiJjam82eGtoOHQwbnMxM3FwcWxmM2ZtaW4zIn0.WVlYHUYvukEai_eSlvk38A");
+        Mapbox.getTelemetry().setUserTelemetryRequestState(false);
+
+        if (getArguments() != null) {
+            latitude = getArguments().getDouble(PARAM_LATITUDE);
+            longitude = getArguments().getDouble(PARAM_LONGITUDE);
+        }
+    }
+    //gestion fragment pour recuperer latitud longitud
+    public static Fragment newInstance(double latitude, double longitude) {
+        MapboxFragment fragment = new MapboxFragment();
+        Bundle bundle = new Bundle();
+        bundle.putDouble(PARAM_LATITUDE, latitude);
+        bundle.putDouble(PARAM_LONGITUDE, longitude);
+
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_mapbox, null);
+        mapView = view.findViewById(R.id.mapView);
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -42,20 +77,13 @@ public class MapboxActivity extends AppCompatActivity {
                 mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
-                        if (getIntent().getExtras() != null) {
-                            latitude = getIntent().getDoubleExtra("hotelLat",0.0) ;
-                            longitude = getIntent().getDoubleExtra("hotelLong",0.0);
-                        }
+
                         LatLng pos = new LatLng( latitude ,longitude);
-                        mapboxMap.animateCamera(
-                                CameraUpdateFactory.newLatLng(pos),
-                                500);
-
-
+                        mapboxMap.animateCamera(CameraUpdateFactory.newLatLng(pos), 500);
                         // Add the marker image to map
                         style.addImage("marker-icon-id",
                                 BitmapFactory.decodeResource(
-                                        MapboxActivity.this.getResources(), R.drawable.mapbox_marker_icon_default));
+                                        MapboxFragment.this.getResources(), R.drawable.mapbox_marker_icon_default));
 
                         GeoJsonSource geoJsonSource = new GeoJsonSource("source-id", Feature.fromGeometry(
                                 Point.fromLngLat(longitude,  latitude)));
@@ -71,9 +99,6 @@ public class MapboxActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 
     // Add the mapView's own lifecycle methods to the activity's lifecycle methods
     @Override
@@ -107,13 +132,13 @@ public class MapboxActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mapView.onSaveInstanceState(outState);
     }
