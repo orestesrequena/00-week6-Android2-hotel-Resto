@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.guide">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.fiche.RestaurantFicheActivity"></activity>
+        <activity android:name=".ui.map.MapboxActivity"></activity>
+        <activity android:name=".ui.fiche.HotelFicheActivity" />
+        <activity android:name=".ui.fiche.RestaurantFicheActivity" />
         <activity android:name=".ui.listing.ListingActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity

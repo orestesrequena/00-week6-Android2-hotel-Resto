@@ -1,8 +1,9 @@
 package com.example.guide.models.hotel;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Fields {
+public class Fields  implements Serializable {
     public  String commune;
     public  String typologie;
     public String categorie;

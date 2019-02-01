@@ -19,6 +19,7 @@ import com.example.guide.R;
 import com.example.guide.models.hotel.Hotels;
 import com.example.guide.models.hotel.Records;
 import com.example.guide.models.restaurant.Restaurant;
+import com.example.guide.ui.fiche.HotelFicheActivity;
 import com.example.guide.ui.fiche.RestaurantFicheActivity;
 import com.example.guide.ui.home.HomeActivity;
 import com.example.guide.utils.Constants;
@@ -103,6 +104,23 @@ public class ListingActivity extends AppCompatActivity {
                                     }
                                     // on passe à l'adaptateur records/hotel le context listingActivity, le layout et l'array avec les hotels
                                     listViewData.setAdapter(new RecordsAdapter(ListingActivity.this, R.layout.item_restaurant, hotelsList));
+
+                                    //creamos el listener para que recoja la posicion del hotel y podemos pasar un extra con el objeto
+                                    listViewData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            Intent intent = new Intent(ListingActivity.this, HotelFicheActivity.class);
+                                            //cogemos la position en el array
+                                            Records item = hotelsList.get(position);
+
+                                            //lopasamos  en el intent
+                                            intent.putExtra("hotelRecord",  item);
+                                            //activamos el intent para que se pase a la actividad RestaurantFicheActivity
+                                            startActivity(intent);
+                                        }
+                                    });
+
+
                                 }
                             }, new Response.ErrorListener() {
                         @Override

@@ -4,22 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.fiche.RestaurantFicheActivity">
+    tools:context=".ui.fiche.HotelFicheActivity">
 
     <ImageView
         android:id="@+id/fiche_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        tools:src="@drawable/photo_restaurant"
+        android:src="@drawable/photo_restaurant"
         />
 
     <TextView
-        android:id="@+id/fiche_nom_restaurant"
+        android:id="@+id/fiche_nom_hotel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        tools:text="Title Restaurant"
-        android:textSize="24sp"/>
+        tools:text="Title Hotel"
+        android:textSize="20sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,25 +28,25 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/fiche_categorie_restaurant"
+            android:id="@+id/fiche_categorie_hotel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="Categorie Restaurant"
+            android:text="Categorie hotel"
             android:textSize="16dp"/>
 
         <Button
             android:layout_marginTop="16dp"
-            android:id="@+id/fiche_email"
+            android:id="@+id/fiche_emailHotel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bouton_email"
             tools:text="Email"
             android:textColor="@android:color/white"
-          />
+            />
         <Button
             android:layout_marginTop="16dp"
-            android:id="@+id/fiche_phone"
+            android:id="@+id/fiche_phoneHotel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bouton_phone"
@@ -55,14 +55,12 @@
         <Button
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:id="@+id/fiche_url"
+            android:id="@+id/fiche_urlHotel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bouton_url"
             tools:text="Url"
             android:textColor="@android:color/white"/>
-
-
     </LinearLayout>
 
 

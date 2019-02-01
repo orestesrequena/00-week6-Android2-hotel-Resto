@@ -1,6 +1,8 @@
 package com.example.guide.models.hotel;
 
-public class Records {
+import java.io.Serializable;
+
+public class Records implements Serializable  {
     public Fields fields;
 
     @Override
